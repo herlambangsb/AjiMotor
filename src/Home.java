@@ -2,9 +2,11 @@
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.DateFormat;
+import java.text.MessageFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 /*
@@ -203,7 +205,12 @@ public class Home extends javax.swing.JFrame {
         jPanel3.add(btnrefresh, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 360, -1, -1));
 
         btnprint.setText("Print");
-        jPanel3.add(btnprint, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 360, -1, -1));
+        btnprint.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnprintActionPerformed(evt);
+            }
+        });
+        jPanel3.add(btnprint, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 360, -1, -1));
 
         jPanel2.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 980, 390));
 
@@ -335,6 +342,19 @@ public class Home extends javax.swing.JFrame {
     private void jkembaliPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jkembaliPropertyChange
         // TODO add your handling code here:
     }//GEN-LAST:event_jkembaliPropertyChange
+
+    private void btnprintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnprintActionPerformed
+        // TODO add your handling code here:
+         MessageFormat header = new MessageFormat("Biodata Peminjam Motor Aji Motor");
+    MessageFormat footer = new MessageFormat("Page {0,number,integer} ");
+   try{
+       tblData.print(JTable.PrintMode.FIT_WIDTH, header, footer, true, null, true, null);
+       
+   }
+   catch(java.awt.print.PrinterException e){
+       System.err.format("Cannot print %a%n", e.getMessage());
+   }// TODO add your handling code here:
+    }//GEN-LAST:event_btnprintActionPerformed
 
     /**
      * @param args the command line arguments
