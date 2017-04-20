@@ -37,13 +37,15 @@ public class Login extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
         txtUser = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         signin = new javax.swing.JButton();
         signup = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
-        txtPass = new javax.swing.JPasswordField();
+        txtpass = new javax.swing.JTextField();
+        jPanel3 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -59,19 +61,14 @@ public class Login extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel2.setBackground(new java.awt.Color(204, 204, 204));
+        jPanel2.setBackground(new java.awt.Color(255, 0, 0));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel1.setBackground(new java.awt.Color(0, 0, 0));
-        jLabel1.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        jLabel1.setText("Username");
-        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 50, -1, -1));
-        jPanel2.add(txtUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 80, 260, -1));
+        jPanel2.add(txtUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 100, 260, -1));
 
         jLabel2.setBackground(new java.awt.Color(0, 0, 0));
         jLabel2.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jLabel2.setText("Password");
-        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 120, -1, -1));
+        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 140, -1, -1));
 
         signin.setText("Sign In");
         signin.addActionListener(new java.awt.event.ActionListener() {
@@ -79,7 +76,7 @@ public class Login extends javax.swing.JFrame {
                 signinActionPerformed(evt);
             }
         });
-        jPanel2.add(signin, new org.netbeans.lib.awtextra.AbsoluteConstraints(248, 220, 80, -1));
+        jPanel2.add(signin, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 240, 80, -1));
 
         signup.setText("Sign Up");
         signup.addActionListener(new java.awt.event.ActionListener() {
@@ -87,7 +84,7 @@ public class Login extends javax.swing.JFrame {
                 signupActionPerformed(evt);
             }
         });
-        jPanel2.add(signup, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 220, -1, -1));
+        jPanel2.add(signup, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 240, -1, -1));
 
         jButton3.setText("Exit");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -95,8 +92,44 @@ public class Login extends javax.swing.JFrame {
                 jButton3ActionPerformed(evt);
             }
         });
-        jPanel2.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 220, 90, -1));
-        jPanel2.add(txtPass, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 150, 260, -1));
+        jPanel2.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 240, 90, -1));
+
+        txtpass.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtpassActionPerformed(evt);
+            }
+        });
+        jPanel2.add(txtpass, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 180, 260, -1));
+
+        jPanel3.setBackground(new java.awt.Color(255, 153, 153));
+
+        jLabel1.setBackground(new java.awt.Color(0, 0, 0));
+        jLabel1.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jLabel1.setText("Mau Pinjam?  Login Dulu");
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(86, 86, 86)
+                .addComponent(jLabel1)
+                .addContainerGap(98, Short.MAX_VALUE))
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1)
+                .addContainerGap(15, Short.MAX_VALUE))
+        );
+
+        jPanel2.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 400, 50));
+
+        jLabel3.setBackground(new java.awt.Color(0, 0, 0));
+        jLabel3.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jLabel3.setText("Username");
+        jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 70, -1, -1));
 
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 400, 300));
 
@@ -106,7 +139,7 @@ public class Login extends javax.swing.JFrame {
 
     private void signupActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signupActionPerformed
     String username = txtUser.getText(); 
-    String password = txtPass.getText();
+    String password = txtpass.getText();
     try{
         try (Statement statement = (Statement) file_koneksi.GetConnection().createStatement()){
          statement.executeUpdate("insert into tb_akun(username, password)VALUES('"+username+"','"+password+"');");   
@@ -125,20 +158,21 @@ public class Login extends javax.swing.JFrame {
 
     private void signinActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signinActionPerformed
         Connection connection;
+         String msg= txtUser.getText();
         PreparedStatement ps;
         try {
-        connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/db_testkoneksi?zeroDateTimeBehavior=convertToNull",
+        connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/db_motor?zeroDateTimeBehavior=convertToNull",
                         "root", "");
         ps = connection.prepareStatement("SELECT * FROM `tb_akun` WHERE username = ? AND password = ?" );
         ps.setString(1, txtUser.getText());
-        ps.setString(2, txtPass.getText());
+        ps.setString(2, txtpass.getText());
         ResultSet result = ps.executeQuery();
         if(result.next()){
-            new Home().show();
+            new Home(msg).show();
             this.dispose();
         }else{
             JOptionPane.showMessageDialog(rootPane, "Salah!");
-            txtPass.setText("");
+            txtpass.setText("");
             txtUser.requestFocus();
         }}
         catch(SQLException ex){
@@ -150,6 +184,10 @@ public class Login extends javax.swing.JFrame {
 
         // TODO add your handling code here:
     }//GEN-LAST:event_signinActionPerformed
+
+    private void txtpassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtpassActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtpassActionPerformed
 
     /**
      * @param args the command line arguments
@@ -191,11 +229,13 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JButton signin;
     private javax.swing.JButton signup;
-    private javax.swing.JPasswordField txtPass;
     private javax.swing.JTextField txtUser;
+    private javax.swing.JTextField txtpass;
     // End of variables declaration//GEN-END:variables
 }

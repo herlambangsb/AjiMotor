@@ -3,8 +3,11 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.MessageFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
@@ -24,10 +27,16 @@ public class Home extends javax.swing.JFrame {
     /**
      * Creates new form Login
      */
-    public Home() {
+    public Home(String user) {
         initComponents();
         selectData();
+        txnama.setText(user);
         
+        
+    }
+
+    private Home() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     /**
@@ -55,19 +64,29 @@ public class Home extends javax.swing.JFrame {
         txalamat = new javax.swing.JTextArea();
         jLabel6 = new javax.swing.JLabel();
         jpinjam = new com.toedter.calendar.JDateChooser();
-        jkembali = new com.toedter.calendar.JDateChooser();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        tblData = new javax.swing.JTable();
         btnsave = new javax.swing.JButton();
-        btnedit = new javax.swing.JButton();
         btndelete = new javax.swing.JButton();
         btnclear = new javax.swing.JButton();
         btnrefresh = new javax.swing.JButton();
         btnprint = new javax.swing.JButton();
-        jPanel4 = new javax.swing.JPanel();
         hasil = new javax.swing.JLabel();
+        jPanel5 = new javax.swing.JPanel();
+        jLabel7 = new javax.swing.JLabel();
+        jkembali = new com.toedter.calendar.JDateChooser();
+        jLabel8 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        jPanel6 = new javax.swing.JPanel();
+        jLabel13 = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
+        btncari = new javax.swing.JButton();
+        jDateChooser1 = new com.toedter.calendar.JDateChooser();
+        jPanel4 = new javax.swing.JPanel();
+        hasil1 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tblData = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -75,15 +94,17 @@ public class Home extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(204, 0, 0));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setFont(new java.awt.Font("Geometr212 BkCn BT", 1, 24)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Geometr212 BkCn BT", 1, 12)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("Aji Motor ");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 10, -1, -1));
+        jLabel1.setText("Ini Rental Motor");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 50, -1, -1));
 
-        jLabel9.setText("jLabel9");
-        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 50, -1, -1));
+        jLabel9.setFont(new java.awt.Font("Geometr212 BkCn BT", 1, 24)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel9.setText("Aji Motor ");
+        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 20, -1, -1));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1010, 80));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 650, 80));
 
         jPanel2.setBackground(new java.awt.Color(204, 255, 204));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -91,48 +112,153 @@ public class Home extends javax.swing.JFrame {
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel2.setText("Nama Peminjam");
-        jPanel3.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 20, -1, -1));
-        jPanel3.add(txnama, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, 200, -1));
+        jPanel3.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 30, -1, -1));
+
+        txnama.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txnamaActionPerformed(evt);
+            }
+        });
+        jPanel3.add(txnama, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 50, 200, -1));
 
         jLabel3.setText("No Struk");
-        jPanel3.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 70, -1, -1));
-        jPanel3.add(txnostruk, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, 200, -1));
+        jPanel3.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 80, -1, -1));
+        jPanel3.add(txnostruk, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 100, 200, -1));
 
         jLabel4.setText("No Pol");
-        jPanel3.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 120, -1, -1));
-        jPanel3.add(txnopol, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 140, 200, -1));
+        jPanel3.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 130, -1, -1));
+        jPanel3.add(txnopol, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 150, 200, -1));
 
         jLabel5.setText("Alamat Peminjam");
-        jPanel3.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 170, -1, -1));
+        jPanel3.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 180, -1, -1));
 
         txalamat.setColumns(20);
         txalamat.setRows(5);
         jScrollPane1.setViewportView(txalamat);
 
-        jPanel3.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 190, 200, -1));
+        jPanel3.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 200, 200, -1));
 
         jLabel6.setText("Pinjam");
-        jPanel3.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 300, -1, -1));
+        jPanel3.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 310, -1, -1));
 
         jpinjam.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
             public void propertyChange(java.beans.PropertyChangeEvent evt) {
                 jpinjamPropertyChange(evt);
             }
         });
-        jPanel3.add(jpinjam, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 320, -1, -1));
+        jPanel3.add(jpinjam, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 330, -1, -1));
+
+        btnsave.setText("Save");
+        btnsave.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnsaveActionPerformed(evt);
+            }
+        });
+        jPanel3.add(btnsave, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 50, 70, -1));
+
+        btndelete.setText("Delete");
+        btndelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btndeleteActionPerformed(evt);
+            }
+        });
+        jPanel3.add(btndelete, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 80, 70, -1));
+
+        btnclear.setText("Clear");
+        btnclear.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnclearActionPerformed(evt);
+            }
+        });
+        jPanel3.add(btnclear, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 110, 70, -1));
+
+        btnrefresh.setText("Refresh");
+        btnrefresh.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnrefreshActionPerformed(evt);
+            }
+        });
+        jPanel3.add(btnrefresh, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 140, 70, -1));
+
+        btnprint.setText("Print");
+        btnprint.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnprintActionPerformed(evt);
+            }
+        });
+        jPanel3.add(btnprint, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 170, 70, -1));
+        jPanel3.add(hasil, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 20, 35, 12));
+
+        jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder("Daftarnya Disini"));
+        jPanel5.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel7.setText("Kembali");
+        jPanel5.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 300, -1, -1));
 
         jkembali.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
             public void propertyChange(java.beans.PropertyChangeEvent evt) {
                 jkembaliPropertyChange(evt);
             }
         });
-        jPanel3.add(jkembali, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 320, -1, -1));
-
-        jLabel7.setText("Kembali");
-        jPanel3.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 300, -1, -1));
+        jPanel5.add(jkembali, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 320, -1, -1));
 
         jLabel8.setText("-");
-        jPanel3.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 320, 10, -1));
+        jPanel5.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 320, 10, -1));
+
+        jButton1.setText("Keluar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        jPanel5.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 190, 70, -1));
+
+        jPanel3.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 10, 300, 360));
+
+        jLabel10.setText("<html>\nAdapun peraturan untuk meminjam motor seperti :<br>\n1.Tidak mencopoti aksesorisnya<br>\n2.Selalu menyalakan lampu<br>\n3.Tidak Melanggar Lampu Lalu Lintas<br>\n</html>");
+        jPanel3.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 180, -1, 100));
+
+        jLabel11.setFont(new java.awt.Font("Tahoma", 2, 14)); // NOI18N
+        jLabel11.setText("Alhamdulillah Telah Dibuka Aji Motor");
+        jPanel3.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 30, -1, 20));
+
+        jLabel12.setText("Harga 20000 Perhari");
+        jPanel3.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 80, -1, 20));
+
+        jPanel6.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+
+        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
+        jPanel6.setLayout(jPanel6Layout);
+        jPanel6Layout.setHorizontalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 294, Short.MAX_VALUE)
+        );
+        jPanel6Layout.setVerticalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+
+        jPanel3.add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 180, 300, -1));
+
+        jLabel13.setFont(new java.awt.Font("Tempus Sans ITC", 2, 48)); // NOI18N
+        jLabel13.setText("Aji");
+        jPanel3.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 110, -1, -1));
+
+        jLabel14.setText("Anda bisa meminjam motor sesuai dengan yang anda inginkan");
+        jPanel3.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, -1, 20));
+
+        btncari.setText("Cari");
+        btncari.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btncariActionPerformed(evt);
+            }
+        });
+        jPanel3.add(btncari, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 350, 80, -1));
+        jPanel3.add(jDateChooser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 350, 190, -1));
+
+        jPanel2.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 630, 390));
+
+        jPanel4.setBackground(new java.awt.Color(204, 204, 204));
 
         tblData.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -162,80 +288,28 @@ public class Home extends javax.swing.JFrame {
         });
         jScrollPane2.setViewportView(tblData);
 
-        jPanel3.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 0, 740, 340));
-
-        btnsave.setText("Save");
-        btnsave.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnsaveActionPerformed(evt);
-            }
-        });
-        jPanel3.add(btnsave, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 360, 70, -1));
-
-        btnedit.setText("Edit");
-        btnedit.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btneditActionPerformed(evt);
-            }
-        });
-        jPanel3.add(btnedit, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 360, 70, -1));
-
-        btndelete.setText("Delete");
-        btndelete.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btndeleteActionPerformed(evt);
-            }
-        });
-        jPanel3.add(btndelete, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 360, -1, -1));
-
-        btnclear.setText("Clear");
-        btnclear.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnclearActionPerformed(evt);
-            }
-        });
-        jPanel3.add(btnclear, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 360, 70, -1));
-
-        btnrefresh.setText("Refresh");
-        btnrefresh.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnrefreshActionPerformed(evt);
-            }
-        });
-        jPanel3.add(btnrefresh, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 360, -1, -1));
-
-        btnprint.setText("Print");
-        btnprint.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnprintActionPerformed(evt);
-            }
-        });
-        jPanel3.add(btnprint, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 360, -1, -1));
-
-        jPanel2.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 980, 390));
-
-        jPanel4.setBackground(new java.awt.Color(204, 204, 204));
-
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(hasil, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(935, Short.MAX_VALUE))
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 632, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(37, 37, 37)
+                .addComponent(hasil1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(hasil, javax.swing.GroupLayout.PREFERRED_SIZE, 12, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(hasil1)
+                .addGap(0, 1, Short.MAX_VALUE))
         );
 
-        jPanel2.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 410, 980, 30));
+        jPanel2.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 410, 630, 150));
 
-        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 80, 1000, 450));
+        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 80, 650, 570));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -255,21 +329,23 @@ public class Home extends javax.swing.JFrame {
       Integer e = d * 20000;
       hasil.setText(String.valueOf(e));
       hasil.setVisible(false);
+      hasil1.setText(String.valueOf(d));
 }catch (Exception e){
       System.out.println(""+ e.getMessage());
 }
         
-        if("".equals(txnama.getText()) || "".equals(txnostruk.getText()) || "".equals(txnopol.getText()) || "".equals(txalamat.getText()) || "".equals(hasil.getText()))
+        if("".equals(txnama.getText()) || "".equals(txnostruk.getText()) || "".equals(txnopol.getText()) || "".equals(txalamat.getText()) || "".equals(hasil.getText())|| pinjam == null)
         {
-            JOptionPane.showMessageDialog(this, "Harap Lengkapi Data", "Error", JOptionPane.WARNING_MESSAGE);}else{
+            JOptionPane.showMessageDialog(this, "Datanya Mohon Dilengkapi", "Error", JOptionPane.WARNING_MESSAGE);
+        }else{
         
             String SQL = "INSERT INTO tb_pinjam (nama, nostruk, nopol, alamat, pinjam, kembali, harga) VALUES('"+txnama.getText()+"','"+txnostruk.getText()+"','"+txnopol.getText()+"','"+txalamat.getText()+"','"+pinjam+"','"+kembali+"','"+hasil.getText()+"')";
             int status = KoneksiDB.execute(SQL);
             if(status == 1){
-                JOptionPane.showMessageDialog(this, "Data berhasil ditambahkan","Sukses",JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(this, "Datanya Sudah Masuk","Sukses",JOptionPane.INFORMATION_MESSAGE);
                 selectData();
             }else{
-                JOptionPane.showMessageDialog(this, "Data gagal ditambahkan","Sukses",JOptionPane.WARNING_MESSAGE);
+                JOptionPane.showMessageDialog(this, "Data gagal dimasukkan","Sukses",JOptionPane.WARNING_MESSAGE);
             }
             
         }
@@ -309,31 +385,6 @@ public class Home extends javax.swing.JFrame {
         selectData();
     }//GEN-LAST:event_btnrefreshActionPerformed
 
-    private void btneditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btneditActionPerformed
-        // TODO add your handling code here:
-        if("".equals(txnama.getText()) || "".equals(txnostruk.getText()) || "".equals(txnopol.getText()) || "".equals(txalamat.getText())){
-            JOptionPane.showMessageDialog(this, "Harap Lengkapi Data","Error",JOptionPane.WARNING_MESSAGE);
-        }else{
-        
-            String SQL = "UPDATE tb_pinjam SET"
-                         +"WHERE nama='"+txnama.getText()+"',"
-                         +"WHERE nostruk='"+txnostruk.getText()+"',"
-                         +"WHERE nopol='"+txnopol.getText()+"',"
-                         +"WHERE alamat='"+txalamat.getText()+"',"
-                         +"WHERE pinjam='"+jpinjam.getDate()+"',"
-                         +"WHERE kembali='"+jkembali.getDate()+"',"
-                         +"WHERE harga = '"+hasil.getText()+"'";
-            int status = KoneksiDB.execute(SQL);
-            if(status == 0){
-                JOptionPane.showMessageDialog(this, "Data berhasil diupdate","Sukses",JOptionPane.INFORMATION_MESSAGE);
-                selectData();
-            }else{
-                JOptionPane.showMessageDialog(this, "Data gagal diupdate","Sukses",JOptionPane.WARNING_MESSAGE);
-            }
-        }
-       
-    }//GEN-LAST:event_btneditActionPerformed
-
     private void jpinjamPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jpinjamPropertyChange
         // TODO add your handling code here:
        
@@ -355,6 +406,52 @@ public class Home extends javax.swing.JFrame {
        System.err.format("Cannot print %a%n", e.getMessage());
    }// TODO add your handling code here:
     }//GEN-LAST:event_btnprintActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        dispose();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void txnamaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txnamaActionPerformed
+        // TODO add your handling code here:
+        
+        
+    }//GEN-LAST:event_txnamaActionPerformed
+
+    private void btncariActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btncariActionPerformed
+        // TODO add your handling code here:
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        String date = dateFormat.format(jDateChooser1.getDate());
+       String kolom[] = {"nama","nostruk","nopol","alamat","pinjam","kembali","harga"};
+        DefaultTableModel dtm = new DefaultTableModel(null, kolom);
+        //SELECT * FROM `rental` WHERE tgl_pinjam <= 101217 AND tgl_kembali >= 101217
+        String SQL = "SELECT * FROM tb_pinjam WHERE pinjam <= '"+date+"' AND kembali >= '"+date+"' ";
+        System.out.println(SQL);
+        ResultSet rs = KoneksiDB.executeQuery(SQL);
+        try{
+            while(rs.next()) {
+                 String nama = rs.getString(1);
+                String nostruk = rs.getString(2);
+                String nopol = rs.getString(3);
+                String alamat = rs.getString(4);
+                String pinjam = rs.getString(5);
+                String kembali = rs.getString(6);
+                String harga = rs.getString(7);
+                Date tpinjam = new SimpleDateFormat("yyyy-MM-dd").parse(pinjam);
+                Date tkembali = new SimpleDateFormat("yyy-MM-dd").parse(kembali);
+                long intHarga = ((tkembali.getTime() - tpinjam.getTime())/ (1000 * 60 * 60 * 24))*20000;
+                String Harga = String.valueOf(intHarga);
+                String data[] = {nama,nostruk,nopol,alamat,pinjam,kembali,harga};
+               dtm.addRow(data);
+           }
+        } catch (SQLException ex){
+            //Logger.getLogger(Main.class.getName()).log(Level.SEVERE,null,ex);
+       } catch (ParseException ex) {
+            Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        tblData.setModel(dtm);
+   
+    }//GEN-LAST:event_btncariActionPerformed
 
     /**
      * @param args the command line arguments
@@ -393,14 +490,22 @@ public class Home extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btncari;
     private javax.swing.JButton btnclear;
     private javax.swing.JButton btndelete;
-    private javax.swing.JButton btnedit;
     private javax.swing.JButton btnprint;
     private javax.swing.JButton btnrefresh;
     private javax.swing.JButton btnsave;
     private javax.swing.JLabel hasil;
+    private javax.swing.JLabel hasil1;
+    private javax.swing.JButton jButton1;
+    private com.toedter.calendar.JDateChooser jDateChooser1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -413,6 +518,8 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel6;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private com.toedter.calendar.JDateChooser jkembali;
@@ -444,6 +551,7 @@ public class Home extends javax.swing.JFrame {
         } catch (SQLException ex){
             //Logger.getLogger(frmMain.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
         tblData.setModel(dtm);
     }
 }
